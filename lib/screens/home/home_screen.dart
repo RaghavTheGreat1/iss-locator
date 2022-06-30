@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iss_locator/services/iss_locator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -18,7 +19,9 @@ class _MyHomePageState extends State<HomeScreen> {
           'ISS Locator',
         ),
       ),
-      body: SizedBox(),
+      body: Text(
+        IssLocator.instance.position.toString(),
+      ),
     );
   }
 }

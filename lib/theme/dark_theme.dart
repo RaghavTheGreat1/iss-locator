@@ -12,7 +12,9 @@ class DarkTheme {
       useMaterial3: true,
     ).copyWith(
       colorScheme: colorScheme,
-      textTheme: GoogleFonts.trispaceTextTheme(),
+      textTheme: GoogleFonts.trispaceTextTheme().apply(
+        bodyColor: Colors.white,
+      ),
     );
   }
 }
