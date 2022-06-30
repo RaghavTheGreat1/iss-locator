@@ -30,22 +30,4 @@ class IssLocator {
       debugPrint(response.reasonPhrase);
     }
   }
-
-  Future<void> passTime(Position currentPosition) async {
-    http.Request request = http.Request(
-        'GET',
-        Uri.parse(
-            'http://api.open-notify.org/iss-pass.json?lat=${currentPosition.latitude}&lon=${currentPosition.longitude}'));
-
-    http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
-      Map json = jsonDecode(await response.stream.bytesToString());
-      // print(await response.stream.bytesToString());
-      // print(
-      //       DateTime.parse((json['response'][0]['risetime'] as int).toString()).year);
-    } else {
-      debugPrint(response.reasonPhrase);
-    }
-  }
 }
