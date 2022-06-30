@@ -6,6 +6,12 @@ if (localPropertiesFile.exists()) {
     }
 }
 
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+def googleMapsApiKey = localProperties.getProperty('googleMapsApiKey')
+if (googleMapsApiKey == null) {
+   googleMapsApiKey = System.getenv("GOOGLE_MAPS_API_KEY_ENVIRONMENT_VARIABLE")
+}
+
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
@@ -47,10 +53,13 @@ android {
         applicationId "com.example.iss_locator"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 20
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders += [
+            googleMapsApiKey: googleMapsApiKey
+        ]
     }
 
     buildTypes {

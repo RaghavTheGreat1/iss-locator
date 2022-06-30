@@ -19,6 +19,6 @@ class Position {
 
   @override
   String toString() {
-    return 'latitude: $latitude\nlongitude: $longitude';
+    return 'Latitude: $latitude\nLongitude: $longitude';
   }
 }
